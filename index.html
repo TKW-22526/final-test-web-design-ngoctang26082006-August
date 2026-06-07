@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thế Giới Mèo Xinh</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <script src="js/lib.js"></script>
+
+    <style>
+        body {
+            /* Đổi sang màu nền kem be sáng sang trọng */
+            background: #FDFBF7;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Header */
+        .logo {
+            font-size: 42px;
+            font-weight: 800;
+            color: #800020; /* Đỏ đô chủ đạo */
+            letter-spacing: -1px;
+        }
+        .slogan {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .navbar {
+            background: white;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: #111111 !important;
+            margin: 0 8px; /* Giảm nhẹ để menu không bị tràn khi thêm mục mới */
+            transition: color 0.2s ease;
+        }
+        .nav-link:hover {
+            color: #800020 !important;
+        }
+        /* Banner với overlay màu đỏ đô/đen huyền bí */
+        .banner {
+            height: 500px;
+            background: linear-gradient(rgba(17, 17, 17, 0.45), rgba(128, 0, 32, 0.45)), url("asset/banner-meo.jpg") center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        .banner h1 {
+            font-size: 60px;
+            font-weight: 800;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            letter-spacing: 1px;
+        }
+        .banner h4 {
+            font-weight: 400;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+        }
+        /* Product Card cao cấp */
+        .product-card {
+            background: white;
+            border: 1px solid #F5EFEB;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            padding: 15px;
+            border-radius: 12px;
+            height: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+        }
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(128, 0, 32, 0.08);
+            border-color: #E6DCD3;
+        }
+        .product-card img {
+            height: 280px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .product-card h3 {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            color: #111111;
+        }
+        .price {
+            color: #800020; /* Đổi giá tiền sang đỏ đô */
+            font-weight: 700;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+        /* Nút xem chi tiết phối đỏ đô đen */
+        .btn-view-detail {
+            border: 1px solid #800020;
+            color: #800020;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .btn-view-detail:hover {
+            background: #800020;
+            color: white;
+        }
+        /* About */
+        .about {
+            background: white;
+            padding: 80px 0;
+            text-align: center;
+            border-top: 1px solid #F5EFEB;
+            border-bottom: 1px solid #F5EFEB;
+        }
+        .about h1 {
+            font-size: 36px;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 20px;
+        }
+        .about p {
+            font-size: 18px;
+            color: #555;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+        /* Khung Tư vấn phối Đỏ Đô - Đen */
+        .tuvan {
+            background: #800020; /* Nền đỏ đô sang trọng */
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .form-box {
+            width: 400px;
+            max-width: 90%;
+            margin: 30px auto 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .form-title {
+            background: #111111; /* Tiêu đề form màu đen */
+            color: white;
+            padding: 20px;
+            margin: -30px -30px 25px -30px;
+            border-radius: 12px 12px 0 0;
+        }
+        .form-title h2 {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0;
+        }
+        .form-box input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #E6DCD3;
+            border-radius: 6px;
+            background: #FAFAF9;
+        }
+        .form-box input:focus {
+            outline: none;
+            border-color: #800020;
+            box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.1);
+        }
+        .form-box button {
+            width: 100%;
+            padding: 14px;
+            background: #800020;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        .form-box button:hover {
+            background: #5C0017;
+        }
+        /* Cam kết */
+        .camket {
+            text-align: center;
+            padding: 80px 20px;
+        }
+        .camket h1 {
+            font-size: 32px;
+            font-weight: 800;
+            color: #111111;
+            margin-bottom: 40px;
+        }
+        .camket-box {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+        }
+        .camket-box .item {
+            width: 260px;
+            background: white;
+            padding: 25px 20px;
+            border-radius: 12px;
+            border: 1px solid #F5EFEB;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+        .camket-box .item:hover {
+            transform: translateY(-3px);
+        }
+        .camket-box .item h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #800020;
+            margin-bottom: 12px;
+        }
+        .camket-box .item p {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+            line-height: 1.5;
+        }
+        /* Footer Đen Tuyền huyền bí */
+        footer {
+            background: #111111;
+            color: #A3968E;
+            padding: 80px 0 40px 0;
+            font-size: 15px;
+        }
+        footer h3, footer h5 {
+            color: white;
+            font-weight: 700;
+        }
+        footer h5 {
+            font-size: 15px;
+            font-weight: 400;
+            color: #D1C7BD;
+            margin-bottom: 12px;
+        }
+        footer a {
+            color: #A3968E;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 15px;
+            transition: color 0.2s ease;
+        }
+        footer a:hover {
+            color: #800020;
+        }
+        /* Mạng xã hội cố định bên góc phải */
+        .social {
+            position: fixed;
+            right: 25px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+        .social i {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 45px;
+            height: 45px;
+            background: white;
+            color: #111111;
+            border-radius: 50%;
+            font-size: 18px;
+            margin: 15px 0;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+        .social i:hover {
+            background: #800020;
+            color: white;
+            transform: scale(1.1);
+        }
+        /* Search Overlay Đỏ Đô */
+        .search-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(17, 17, 17, 0.75);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding-top: 80px;
+            overflow-y: auto;
+        }
+        .search-box {
+            background: #FDFBF7;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 15px;
+            padding: 30px;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border: 1px solid #E6DCD3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container-fluid bg-white py-3 border-bottom">
+        <div class="row align-items-center">
+            <div class="col-md-3">
+                <div class="logo">🐾 MeoIsTheBest</div>
+                <div class="slogan">Khám phá thế giới mèo</div>
+            </div>
+            <div class="col-md-5">
+                <nav class="navbar navbar-expand-lg py-0">
+                    <div class="container">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item"><a class="nav-link" href="#home">Trang Chủ</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#cac-giong-meo">Mèo & Sản Phẩm</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#about">Giới Thiệu</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#contact">Liên Hệ</a></li> 
+                            <li class="nav-item"><a id="nut-huong-dan" class="nav-link" href="html/care-guide.html">Hướng Dẫn Chăm Sóc</a></li>
+                            
+                            <li class="nav-item">
+                                <a class="nav-link d-flex align-items-center" href="html/cart.html" style="white-space: nowrap;">
+                                    <i class="fas fa-shopping-cart me-1" style="color: #800020;"></i> 
+                                    <span>Giỏ Hàng</span>
+                                    <span id="cart-count" class="badge rounded-pill bg-danger ms-1" style="font-size: 10px; padding: 3px 6px;">0</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            
+            <div class="col-md-4 text-end d-flex align-items-center justify-content-end gap-3">
+                <input type="text" id="searchInput" class="form-control" placeholder="Tìm mèo, phụ kiện..." onkeyup="searchCat()" style="width: 220px; height: 42px; border-radius: 20px;">
+                <div id="auth-section" class="d-flex align-items-center">
+                    <a href="html/login.html" class="text-dark text-decoration-none fw-bold small">
+                        <i class="fas fa-user-circle fs-5 align-middle me-1" style="color: #800020;"></i> Đăng nhập
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="home" class="banner">
+        <div class="text-center">
+            <h1>THẾ GIỚI MÈO XINH</h1>
+            <h4 class="mt-3">Nơi chia sẻ kiến thức và cung cấp phụ kiện tốt nhất cho Hoàng Thượng</h4>
+        </div>
+    </section>
+
+    <section id="products" class="container py-5">
+        <div id="cac-giong-meo">
+            <h2 class="text-center fw-bold mb-2 text-dark">Các Giống Mèo Nổi Bật</h2>
+            <hr class="mx-auto mb-5" style="width: 60px; height: 3px; background: #800020; opacity: 1;">
+            <div class="row g-4" id="product-container"></div>
+        </div>
+    </section>
+    
+    <section class="container pb-5">
+        <div class="mt-2">
+            <h3 class="text-center fw-bold mb-2">🛒 Các Sản Phẩm Sen Tham Khảo</h3>
+            <hr class="mx-auto mb-5" style="width: 60px; height: 3px; background: #800020; opacity: 1;">
+
+            <h4 class="fw-bold mt-4 mb-3 text-dark"><i class="fas fa-bone me-2" style="color: #800020;"></i>Thức ăn cho mèo</h4>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/regalos.jpg" alt="Pate Regalos">
+                        <h3>Pate Regalos</h3>
+                        <div class="price">355.000đ/thùng</div>
+                        <a href="html/product-detail.html?id=101" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div> 
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/chảm.jpg" alt="Hạt Charm">
+                        <h3>Hạt Charm</h3>
+                        <div class="price">950.000đ/túi 4,5kg</div>
+                        <a href="html/product-detail.html?id=102" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/tl2.jpg" alt="Hạt TL2">
+                        <h3>Hạt TL2</h3>
+                        <div class="price">110.000đ/gói 1kg</div>
+                        <a href="html/product-detail.html?id=103" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/pate kitcat.jpg" alt="Pate mix">
+                        <h3>Pate mix</h3>
+                        <div class="price">220.000đ/thùng</div>
+                        <a href="html/product-detail.html?id=104" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/Taste of love.jpg" alt="Taste of Love">
+                        <h3>Taste of Love</h3>
+                        <div class="price">180.000đ/túi 1,5kg</div>
+                        <a href="html/product-detail.html?id=105" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/RL.jpg" alt="Royal canin">
+                        <h3>Royal canin</h3>
+                        <div class="price">215.000đ/túi 1kg</div>
+                        <a href="html/product-detail.html?id=106" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="fw-bold mt-5 mb-3 text-dark"><i class="fas fa-shapes me-2" style="color: #800020;"></i>Đồ chơi cho mèo</h4>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/CẦN CÂU MÈO.jpg" alt="Cần câu mèo">
+                        <h3>Cần câu mèo</h3>
+                        <div class="price">25.000đ</div>
+                        <a href="html/product-detail.html?id=107" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/BẠC HÀ MÈO DẠNG VIÊN CÓ KEO DÁN.jpg" alt="Bạc hà">
+                        <h3>Bạc hà mèo sấy khô dạng viên</h3>
+                        <div class="price">18.000đ</div>
+                        <a href="html/product-detail.html?id=108" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/BÀN CÀO.jpg" alt="Bàn cào móng">
+                        <h3>Bàn cào móng</h3>
+                        <div class="price">150.000đ</div>
+                        <a href="html/product-detail.html?id=109" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/BẠC HÀ MÈO.jpg" alt="Bạc hà sấy">
+                        <h3>Bạc hà mèo sấy khô dạng ống</h3>
+                        <div class="price">15.000đ</div>
+                        <a href="html/product-detail.html?id=110" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/TÚI NGỦ.jpg" alt="Tổ ngủ">
+                        <h3>Tổ ngủ cho Mèo</h3>
+                        <div class="price">89.000đ</div>
+                        <a href="html/product-detail.html?id=111" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/CÁ.jpg" alt="Cá vải">
+                        <h3>Cá Vải ruột cỏ</h3>
+                        <div class="price">45.000đ</div>
+                        <a href="html/product-detail.html?id=112" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+
+            <h4 class="fw-bold mt-5 mb-3 text-dark"><i class="fas fa-box-open me-2" style="color: #800020;"></i>Cát vệ sinh</h4>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/CÁT ĐẬU NÀNH.jpg" alt="Cát đậu nành">
+                        <h3>Cát Đậu Nành Pet choice</h3>
+                        <div class="price">126.000đ</div>
+                        <a href="html/product-detail.html?id=113" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/CÁT DN.jpg" alt="Cát mix">
+                        <h3>Cát Đậu Nành mix sắn Pet choice</h3>
+                        <div class="price">110.000đ</div>
+                        <a href="html/product-detail.html?id=114" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="product-card">
+                        <img src="asset/ĐÁT SÉT.jpg" alt="Cát đất sét">
+                        <h3>Cát Đất sét</h3>
+                        <div class="price">40.000đ</div>
+                        <a href="html/product-detail.html?id=115" class="btn btn-view-detail mt-3 w-100 rounded-pill">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h1>Giới Thiệu</h1>
+            <p>
+                Chào mừng bạn đến với MeoIsTheBest. Website cung cấp thông tin chi tiết về nhiều giống mèo nổi tiếng như
+                Mèo Anh Lông Ngắn, Tai Cụp... và các sản phẩm chăm sóc sức khỏe toàn diện cho các boss.
+                Tại đây bạn có thể dễ dàng tìm hiểu đặc điểm, tính cách, giá bán từng giống thú cưng chuẩn xác nhất.
+            </p>
+        </div>
+    </section>
+
+    <section class="tuvan">
+        <h1>Tư vấn miễn phí</h1>
+        <p>Cung cấp thông tin rõ ràng về thú cưng, tư vấn dinh dưỡng và cách chăm sóc khoa học.</p>
+
+        <div class="form-box">
+            <div class="form-title">
+                <h2>Để lại thông tin cho chúng tôi</h2>
+                <p class="mb-0 small opacity-75">Chúng tôi sẽ gọi lại tư vấn ngay</p>
+            </div>
+            <input type="text" placeholder="Họ và tên">
+            <input type="text" placeholder="Nhập số điện thoại">
+            <button>Tư vấn nhanh</button>
+        </div>
+    </section>
+
+    <section class="camket">
+        <h1>CAM KẾT CỦA CHÚNG TÔI</h1>
+        <div class="camket-box">
+            <div class="item">
+                <h3>🐾 Thuần chủng</h3>
+                <p>Đảm bảo nguồn gốc rõ ràng, gia phả minh bạch.</p>
+            </div>
+            <div class="item">
+                <h3>💉 Tiêm phòng đầy đủ</h3>
+                <p>Kiểm tra sức khỏe boss trước khi giao, cam kết không gửi sản phẩm quá date.</p>
+            </div>
+            <div class="item">
+                <h3>📞 Hỗ trợ 24/7</h3>
+                <p>Đội ngũ tư vấn viên nhiệt tình hỗ trợ chăm sóc trọn đời.</p>
+            </div>
+            <div class="item">
+                <h3>❤️ Bảo hành sản phẩm</h3>
+                <p>Hỗ trợ đổi trả trong vòng 7 ngày kể từ khi nhận sản phẩm lỗi.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3 class="mb-4 text-white">Khám Phá</h3>
+                    <a href="#cac-giong-meo">Các giống mèo hot</a>
+                    <a href="#nut-huong-dan">Hướng dẫn chăm sóc</a>
+                    <a href="#kinh-nghiem-nuoi">Kinh nghiệm nuôi mèo</a>
+                </div>
+
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h3 class="mb-4 text-white">Liên hệ</h3>
+                    <h5><i class="fas fa-envelope me-2" style="color:#800020;"></i>ngoctang.26082006@gmail.com</h5>
+                    <h5><i class="fas fa-phone-alt me-2" style="color:#800020;"></i>0345596081</h5>
+                </div>
+
+                <div class="col-md-4">
+                    <h3 class="mb-4 text-white">Theo dõi</h3>
+                    <a href="https://www.facebook.com/search/top?q=Ngọc%20Tăng" target="_blank"><i class="fab fa-facebook me-2"></i>Facebook Ngọc Tăng</a>
+                    <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram me-2"></i>Instagram Ngọc Tăng</a>
+                    <a href="https://www.tiktok.com/@ngc.tng06" target="_blank"><i class="fab fa-tiktok me-2"></i>TikTok @ngc.tng06</a>
+                </div>
+            </div>
+            
+            <hr class="my-5" style="border-color: #333;">
+            <div class="text-center small opacity-70">
+                Chân thành cảm ơn quý khách đã ghé xem và ủng hộ website của chúng tôi.
+            </div>
+        </div>
+    </footer>
+
+    <div id="search-overlay" class="search-overlay" style="display:none;">
+        <div class="search-box">
+            <h4 class="mb-4 fw-bold text-dark"><i class="fas fa-search me-2" style="color: #800020;"></i>Kết quả tìm kiếm</h4>
+            <div class="row g-4" id="search-result"></div>
+        </div>
+    </div>
+
+    <div class="social">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-pinterest-p"></i>
+    </div>
+
+<script>
+    window.productList = window.productList || [];
+    window.petProducts = window.petProducts || [];
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // ĐÃ THÊM: Gọi hàm cập nhật số lượng giỏ hàng ngay khi vừa load trang chủ
+        updateCartCount();
+
+        let htmlContent = "";
+        let productContainer = document.getElementById("product-container");
+
+        if (productContainer && window.productList && window.productList.length > 0) {
+            window.productList.forEach(cat => {
+                htmlContent += `
+                    <div class="col-lg-4 col-md-6">
+                        <div class="product-card">
+                            <img src="${cat.imageHome}" alt="${cat.name}">
+                            <h3>${cat.name}</h3>
+                            <div class="price">${cat.price}</div>
+                            <a href="html/product-detail.html?id=${cat.id}" class="btn btn-view-detail mt-3 w-100 rounded-pill">
+                                Xem chi tiết
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+            productContainer.innerHTML = htmlContent;
+        }
+
+        let isLoggedIn = localStorage.getItem("isLoggedIn");
+        let currentUser = localStorage.getItem("currentUser");
+        let authSection = document.getElementById("auth-section");
+
+        if (isLoggedIn === "true" && currentUser && authSection) {
+            authSection.innerHTML = `
+                <span class="fw-bold text-dark me-2 small">
+                    <i class="fas fa-user-circle me-1" style="color: #800020;"></i>${currentUser}
+                </span>
+                <button class="btn btn-sm text-white px-2 py-1 fw-bold" style="background: #800020; font-size:12px; border-radius:15px;" onclick="logout()">Đăng xuất</button>
+            `;
+        }
+    });
+
+    // ĐÃ THÊM: Hàm quét localStorage và tính tổng số lượng mặt hàng để hiển thị lên menu
+    function updateCartCount() {
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        let totalCount = 0;
+        
+        // Cộng dồn tất cả số lượng (quantity) từng sản phẩm
+        cart.forEach(item => {
+            totalCount += item.quantity;
+        });
+        
+        let cartCountEl = document.getElementById("cart-count");
+        if (cartCountEl) {
+            cartCountEl.innerText = totalCount;
+        }
+    }
+
+    function logout() {
+        localStorage.removeItem("isLoggedIn");
+        localStorage.removeItem("currentUser");
+        alert("👋 Đã đăng xuất tài khoản!");
+        window.location.reload();
+    }
+
+    function searchCat() {
+        let keyword = document.getElementById("searchInput").value.toLowerCase().trim();
+        let overlay = document.getElementById("search-overlay");
+        let resultBox = document.getElementById("search-result");
+
+        if (!overlay || !resultBox) return;
+
+        resultBox.innerHTML = "";
+
+        if (keyword === "") {
+            overlay.style.display = "none";
+            return;
+        }
+
+        let found = false;
+        let listCats = window.productList || [];
+        let listPets = window.petProducts || [];
+        let allProducts = [...listCats, ...listPets];
+
+        if (allProducts.length > 0) {
+            allProducts.forEach(product => {
+                if (product.name.toLowerCase().includes(keyword)) {
+                    found = true;
+                    let displayImage = product.imageHome || (product.image ? product.image.replace("../", "") : "");
+                    let detailLink = product.productLink ? `html/${product.productLink}?id=${product.id}` : `html/product-detail.html?id=${product.id}`;
+
+                    resultBox.innerHTML += `
+                        <div class="col-lg-4 col-md-6">
+                            <div class="product-card">
+                                <img src="${displayImage}" alt="${product.name}">
+                                <h3>${product.name}</h3>
+                                <div class="price">${product.price}</div>
+                                <a href="${detailLink}" class="btn btn-view-detail mt-3 w-100 rounded-pill">
+                                    Xem chi tiết
+                                </a>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        if (!found) {
+            resultBox.innerHTML = `
+                <div class="text-center w-100 py-5">
+                    <h5 class="text-muted fw-bold">❌ Không tìm thấy kết quả phù hợp</h5>
+                </div>
+            `;
+        }
+
+        overlay.style.display = "flex";
+    }
+
+    document.getElementById("search-overlay").addEventListener("click", function(e) {
+        if (e.target === this) {
+            this.style.display = "none";
+        }
+    });
+</script>
+    
+</body>
+</html>

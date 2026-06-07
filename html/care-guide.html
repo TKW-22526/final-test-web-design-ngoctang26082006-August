@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cẩm Nang Chăm Sóc Mèo - MeoIsTheBest</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Hiệu ứng cuộn mượt mà và chống dính sát mép trên màn hình */
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 30px;
+        }
+        body {
+            background: #FDFBF7; /* Nền Be sáng đồng bộ trang chủ */
+            color: #111111;
+        }
+        /* Header & Navigation */
+        .logo {
+            font-size: 32px;
+            font-weight: 800;
+            color: #800020;
+            text-decoration: none;
+        }
+        /* Banner Cẩm nang */
+        .care-banner {
+            background: linear-gradient(rgba(17, 17, 17, 0.6), rgba(128, 0, 32, 0.6)), url("asset/banner-meo.jpg") center center/cover;
+            padding: 80px 0;
+            color: white;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        /* Card Bài viết */
+        .card-guide {
+            background: white;
+            border: 1px solid #F5EFEB;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        .card-guide:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(128, 0, 32, 0.08);
+            border-color: #E6DCD3;
+        }
+        .card-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #800020;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .btn-read {
+            color: #800020;
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .btn-read:hover {
+            color: #111111;
+        }
+        /* Sidebar danh mục */
+        .category-list a {
+            display: block;
+            padding: 12px 15px;
+            color: #111111;
+            text-decoration: none;
+            border-bottom: 1px solid #F5EFEB;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        .category-list a:hover {
+            background: #800020;
+            color: white;
+            padding-left: 20px;
+        }
+        /* Footer */
+        footer {
+            background: #111111;
+            color: #A3968E;
+            padding: 40px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-white border-bottom py-3">
+        <div class="container">
+            <a class="logo" href="../index.html">🐾 MeoIsTheBest</a>
+            <a href="../index.html" class="btn btn-outline-dark rounded-pill btn-sm fw-bold">
+                <i class="fas fa-arrow-left me-1"></i> Quay về Trang Chủ
+            </a>
+        </div>
+    </nav>
+
+    <header class="care-banner">
+        <div class="container">
+            <h1 class="fw-bold display-4">🐾 CẨM NÀNG CHĂM SÓC MÈO</h1>
+            <p class="lead opacity-90">Tổng hợp kiến thức nuôi dạy, chăm sóc sức khỏe và dinh dưỡng tối ưu cho Boss</p>
+        </div>
+    </header>
+
+    <div class="container pb-5">
+        <div class="row g-4">
+            
+            <div class="col-lg-8">
+                <div class="row g-4">
+                    
+                    <div class="col-md-6" id="dinh-duong">
+                        <div class="card-guide shadow-sm">
+                            <div style="position: relative; height: 200px; background: #222; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-fish fa-3x" style="color: #800020; opacity: 0.4;"></i>
+                                <span class="card-category">Dinh Dưỡng</span>
+                            </div>
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold text-dark mb-2">Chế độ dinh dưỡng khoa học cho mèo con</h5>
+                                <p class="text-muted small">Mèo con cần hàm lượng protein cao để phát triển toàn diện. Khám phá tỷ lệ trộn hạt và pate chuẩn nhất...</p>
+                                <hr>
+                                <a href="nutrition-baby-cat.html" class="btn-read small">Đọc bài viết <i class="fas fa-chevron-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" id="suc-khoe">
+                        <div class="card-guide shadow-sm">
+                            <div style="position: relative; height: 200px; background: #222; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-heartbeat fa-3x" style="color: #800020; opacity: 0.4;"></i>
+                                <span class="card-category">Sức Khỏe</span>
+                            </div>
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold text-dark mb-2">Lịch tiêm phòng và tẩy giun định kỳ</h5>
+                                <p class="text-muted small">Bảo vệ mèo khỏi bệnh giảm bạch cầu nguy hiểm. Xem ngay lịch chủng ngừa bắt buộc từ các bác sĩ thú y...</p>
+                                <hr>
+                                <a href="vaccine-schedule.html" class="btn-read small">Đọc bài viết <i class="fas fa-chevron-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" id="grooming">
+                        <div class="card-guide shadow-sm">
+                            <div style="position: relative; height: 200px; background: #222; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-cut fa-3x" style="color: #800020; opacity: 0.4;"></i>
+                                <span class="card-category">Vệ Sinh</span>
+                            </div>
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold text-dark mb-2">Mẹo chăm sóc lông và tắm mèo tại nhà</h5>
+                                <p class="text-muted small">Bí quyết giúp Boss hợp tác khi tắm, cách chải lông giảm rụng 90% và mẹo cắt móng an toàn không chảy máu...</p>
+                                <hr>
+                                <a href="cat-grooming.html" class="btn-read small">Đọc bài viết <i class="fas fa-chevron-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6" id="hanh-vi">
+                        <div class="card-guide shadow-sm">
+                            <div style="position: relative; height: 200px; background: #222; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-cat fa-3x" style="color: #800020; opacity: 0.4;"></i>
+                                <span class="card-category">Hành Vi</span>
+                            </div>
+                            <div class="card-body p-4">
+                                <h5 class="fw-bold text-dark mb-2">Hiểu ngôn ngữ cơ thể của mèo</h5>
+                                <p class="text-muted small">Mèo ngoáy đuôi, kêu gừ gừ hay cọ đầu vào chân m có ý nghĩa gì? Học cách đọc vị cảm xúc của hoàng thượng...</p>
+                                <hr>
+                                <a href="cat-behavior.html" class="btn-read small">Đọc bài viết <i class="fas fa-chevron-right ms-1"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="bg-white p-4 rounded-3 border mb-4 shadow-sm">
+                    <h5 class="fw-bold mb-3" style="color: #800020;"><i class="fas fa-list me-2"></i>Danh Mục Cẩm Nang</h5>
+                    <div class="category-list">
+                        <a href="nutrition-baby-cat.html"><i class="fas fa-angle-right me-2"></i>Dinh dưỡng cho mèo</a>
+                        <a href="vaccine-schedule.html"><i class="fas fa-angle-right me-2"></i>Phòng và chữa bệnh</a>
+                        <a href="cat-grooming.html"><i class="fas fa-angle-right me-2"></i>Kinh nghiệm Grooming</a>
+                        <a href="cat-behavior.html"><i class="fas fa-angle-right me-2"></i>Mẹo huấn luyện Boss</a>
+                    </div>
+                </div>
+
+                <div class="text-white p-4 rounded-3 shadow-sm" style="background: #800020;">
+                    <h5 class="fw-bold mb-3"><i class="lightbulb far fa-lightbulb me-2"></i>Góc Nhắc Nhở!</h5>
+                    <p class="small mb-0 opacity-90">
+                        "Hãy luôn đảm bảo khay nước của mèo được thay mới mỗi ngày. Mèo rất lười uống nước bẩn, điều này dễ dẫn đến nguy cơ sỏi thận cực kỳ nguy hiểm!"
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="text-center border-top border-secondary">
+        <div class="container">
+            <p class="mb-0 opacity-70">© 2026 MeoIsTheBest - Chia sẻ bằng tình yêu thương động vật.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
